@@ -2,10 +2,10 @@
 on: 
   push:
     branches:
-      - master
+      - test
   workflow_dispatch:
     inputs:
-      devlogLevel:
+      logLeveldev:
         description: 'Log level'     
         required: true
         default: 'information'
@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         node: ['dev','test','ppd']
+        node2: ['dev-sp', 'test-sp','ppd-sp']
     runs-on: ubuntu-latest
     environment: ${{matrix.node}}
     steps:
@@ -22,28 +23,9 @@ jobs:
       - uses: ./actions/
       - name: powershell
         run: |
-           write-host 'hello'
-           write-host ${{inputs.devlogLevel}}
-           #Get-Content ".\test.json"
-
-           #$test = '${{secrets.pwd}}'
-           #if($test = 'pwds')
-           #{
-           #write-host 'hurray' 
-           #}
-           ##else {
-           #write-host 'badluck'
-           #}
-           #$test = '${{secrets.pwd}}'
-           #write-host 'printing secrt'
-           #Out-File -FilePath EmptyFile2.txt
-           #git --version
-           #git clone https://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:x-oauth-basic@github.com/Ajith5550/public-yamls.git
-           #get-childitem
-           #$sec = '$' + '{{secrets.' + 'pwd}}'
-           #$sec
-           #(Get-Content ".\test.json") -replace '__pwd__' , ${{secrets. + 'pwd'}} | Set-Content -Path ".\test.json"
-           #Get-Content ".\test.json"
+           write-host ${{matrix.node}}
+           write-host ${{matrix.node2}}
+           
         shell: pwsh
         
       
