@@ -14,7 +14,7 @@ jobs:
     
     strategy:
       matrix:
-        node: ${{ github.event.inputs.envs }}
+        node: [ '${{ github.event.inputs.envs }}' ]
     runs-on: ubuntu-latest
     environment: ${{matrix.node}}
     steps:
