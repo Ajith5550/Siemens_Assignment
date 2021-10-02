@@ -1,8 +1,8 @@
 
 on: 
-  push:
-    branches:
-      - master
+#  push:
+ #   branches:
+  #    - master
   workflow_dispatch:
     inputs:
       envs:
@@ -10,6 +10,11 @@ on:
         required: true
         default: 'test,dev'
 jobs:
+  do-something2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            echo "::set-output name=subscriptionId::${{ github.event.inputs.envs }}.Split(",")"
   do-something:
     
     strategy:
