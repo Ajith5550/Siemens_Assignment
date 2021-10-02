@@ -8,7 +8,7 @@ on:
       envs:
         description: 'env vars'     
         required: true
-        default: '{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}'
+        default: "{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
 name: build
 jobs:
   job1:
