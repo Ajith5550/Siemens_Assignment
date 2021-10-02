@@ -15,7 +15,7 @@ jobs:
     steps:
       - id: setvars
         run: |
-            echo "::set-output name=subscriptionId::'${{ github.event.inputs.envs }}'.Split(",")"
+            echo "::set-output name=subscriptionId::'${{ github.event.inputs.envs }}'.Split("","")"
       - name: printvars
         run: |
             ${{steps.setvars.outputs.subscriptionId}}
