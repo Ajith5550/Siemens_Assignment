@@ -1,14 +1,14 @@
 
 on: 
-  push:
-    branches:
-      - master
-  #workflow_dispatch:
-   # inputs:
-    #  envs:
-     #   description: 'env vars'     
-      #  required: true
-       # default: 'test,dev'
+  #push:
+   # branches:
+     # - master
+  workflow_dispatch:
+    inputs:
+      envs:
+        description: 'env vars'     
+        required: true
+        default: '{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}'
 name: build
 jobs:
   job1:
@@ -17,7 +17,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
     - id: set-matrix
-      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+      run: echo "::set-output name=matrix::${{ github.events.inputs.evs }}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
