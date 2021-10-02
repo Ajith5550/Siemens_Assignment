@@ -1,20 +1,20 @@
 
 on: 
- # push:
-  #  branches:
-   #   - master
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       envs:
         description: 'env vars'     
         required: true
-        default: 'test'
+        default: 'test,dev'
 jobs:
   do-something:
     
     strategy:
       matrix:
-        node: [ '${{ github.event.inputs.envs }}' ]
+        node: [ '${{ github.event.inputs.envs }}.Split(",")' ]
     runs-on: ubuntu-latest
     environment: ${{matrix.node}}
     steps:
