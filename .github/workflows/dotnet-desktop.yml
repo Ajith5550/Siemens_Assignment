@@ -14,12 +14,12 @@ jobs:
     
     strategy:
       matrix:
-        node: [ 'test' ]
+        node: ${{ github.event.inputs.envs }}.Split(",")
     runs-on: ubuntu-latest
     environment: ${{matrix.node}}
     steps:
       - run: |
-            write-host ${{ github.event.inputs.envs.default }}.Split(",")
+            write-host ${{ github.event.inputs.envs }}.Split(",")
       - uses: actions/checkout@v2
       - uses: ./actions/
       - name: outputvars
