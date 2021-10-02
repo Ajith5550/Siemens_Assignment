@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-            echo "::set-output name=subscriptionId::${{ github.event.inputs.envs }}.Split(",")"
+            echo "::set-output name=subscriptionId::'${{ github.event.inputs.envs }}'.Split(",")"
   do-something:
     
     strategy:
