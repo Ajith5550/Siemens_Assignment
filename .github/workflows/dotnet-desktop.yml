@@ -19,7 +19,7 @@ jobs:
     environment: ${{matrix.node}}
     steps:
       - run: |
-            write-host ${{ github.event.inputs.envs }}.Split(",")
+            write-host ${{ github.event.inputs.envs.default }}.Split(",")
       - uses: actions/checkout@v2
       - uses: ./actions/
       - name: outputvars
