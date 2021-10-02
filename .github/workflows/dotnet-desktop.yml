@@ -1,52 +1,27 @@
 
 on: 
-#  push:
- #   branches:
-  #    - master
-  workflow_dispatch:
-    inputs:
-      envs:
-        description: 'env vars'     
-        required: true
-        default: 'test,dev'
+  push:
+    branches:
+      - master
+  #workflow_dispatch:
+   # inputs:
+    #  envs:
+     #   description: 'env vars'     
+      #  required: true
+       # default: 'test,dev'
+name: build
 jobs:
-  do-something2:
+  job1:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - id: setvars
-        run: |
-            echo "::set-output name=subscriptionId::'${{ github.event.inputs.envs }}'.Split("","")"
-      - name: printvars
-        run: |
-            ${{steps.setvars.outputs.subscriptionId}}
-  do-something:
-    
+    - id: set-matrix
+      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
     strategy:
-      matrix:
-        node: ${{ github.event.inputs.envs }}.Split(",")
-    runs-on: ubuntu-latest
-    environment: ${{matrix.node}}
+      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
     steps:
-      - run: |
-            write-host ${{ github.event.inputs.envs }}.Split(",")
-      - uses: actions/checkout@v2
-      - uses: ./actions/
-      - name: outputvars
-        id: vars
-        run: |
-
-           $data = (Get-Content ${{matrix.node}}.json) | ConvertFrom-Json
-           $secret = $data.secret
-           write-host $data.secret
-           echo "::set-output name=branch::$secret"
-        shell: pwsh
-
-      - name: powershell2
-        run: |
-           Out-File -FilePath EmptyFile2.txt
-           get-childitem
-           write-host ${{steps.vars.outputs.branch}}
-        shell: pwsh
-        
-      
-      
+    - run: build
