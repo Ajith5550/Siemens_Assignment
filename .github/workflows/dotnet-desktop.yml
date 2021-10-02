@@ -13,8 +13,12 @@ jobs:
   do-something2:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - id: setvars
+        run: |
             echo "::set-output name=subscriptionId::'${{ github.event.inputs.envs }}'.Split(",")"
+      - name: printvars
+        run: |
+            ${{steps.setvars.outputs.subscriptionId}}
   do-something:
     
     strategy:
