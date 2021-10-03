@@ -16,15 +16,13 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - id: set-matrix
+    - if: ${{ github.ref == 'refs/heads/main' }}
+      id: set-matrix
       run: |
           
-          echo "Env: ${{ github.event.type }}" 
+          #echo "Env: ${{ github.event.type }}" 
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
          
-          echo "::set-output name=matrix::{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
-          }
-      shell: pwsh
     - run: echo "${{ github.event.inputs.envs }}"
   job2:
     needs: job1
