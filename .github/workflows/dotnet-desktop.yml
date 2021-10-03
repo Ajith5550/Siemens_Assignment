@@ -17,7 +17,15 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
     - id: set-matrix
-      run: echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
+      run: |
+          if ( ${{ github.event.inputs.envs }} != '')
+          {
+          echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
+          }
+          else
+          {
+          echo "::set-output name=matrix::{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
+          }
     - run: echo "${{ github.event.inputs.envs }}"
   job2:
     needs: job1
