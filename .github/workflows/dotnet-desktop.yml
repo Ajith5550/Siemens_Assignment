@@ -29,6 +29,7 @@ jobs:
           {
           echo "::set-output name=matrix::{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
           }
+      shell: pwsh
     - run: echo "${{ github.event.inputs.envs }}"
   job2:
     needs: job1
