@@ -18,7 +18,7 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-          $event = ${{ github.event }}
+          $event = ${{ github.event.type }}
           echo $event
           $environments = ${{ github.event.inputs.envs }}
           if ( $environments  != '')
