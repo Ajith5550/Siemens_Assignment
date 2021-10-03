@@ -21,7 +21,13 @@ jobs:
       if: ${{ github.EVENT_NAME == 'workflow_dispatch' }}
       id: set-matrix-from-workflow-dispatch
       run: |
+          if( ${{ github.EVENT_NAME }} = 'workflow_dispatch')
+          {
           echo "${{ github.EVENT_NAME }}"
+          }
+          else
+          {
+          }
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
  
          
