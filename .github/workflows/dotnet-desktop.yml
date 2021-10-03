@@ -20,13 +20,10 @@ jobs:
     - name : set-matrix-from-workflow-dispatch
       if: ${{ github.EVENT_NAME == 'workflow_dispatch' }}
       id: set-matrix-from-workflow-dispatch
-      run: |        
+      run: |
+          echo "${{ github.EVENT_NAME }}"
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
-    - name : set-matrix      
-      if: ${{ github.EVENT_NAME != 'workflow_dispatch' }}
-      id: set-matrix
-      run: |        
-          echo "::set-output name=matrix::'{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}'"
+ 
          
     - run: echo " ${{GITHUB.EVENT_NAME}}"
   job2:
