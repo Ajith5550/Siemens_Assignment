@@ -12,9 +12,9 @@ jobs:
     - id: set-matrix
       run:
           if('${{ github.event_name }}' -eq 'push')
-          {
+          then
           echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
-          }
+          fi
       shell: bash
   job2:
     needs: job1
