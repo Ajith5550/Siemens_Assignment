@@ -25,9 +25,7 @@ jobs:
           {
           echo "${{ github.EVENT_NAME }}"
           }
-          else
-          {
-          }
+
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
  
          
