@@ -18,7 +18,8 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-          if ( ${{ github.event.inputs.envs }} != '')
+          $environments = ${{ github.event.inputs.envs }}
+          if ( $environments  != '')
           {
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
           }
