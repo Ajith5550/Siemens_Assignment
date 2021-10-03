@@ -1,15 +1,13 @@
-
-
 on: 
   push:
     branches:
       - master
-  workflow_dispatch:
-    inputs:
-      envs:
-        description: 'env vars'     
-        required: true
-        default: "{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
+  #workflow_dispatch:
+   # inputs:
+    #  envs:
+     #   description: 'env vars'     
+      #  required: true
+       # default: 'test,dev'
 name: build
 jobs:
   job1:
@@ -17,27 +15,13 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - name : set-matrix-from-workflow-dispatch
-      if: ${{ github.EVENT_NAME == 'workflow_dispatch' }}
-      id: set-matrix
-      run: |
-          $event = '${{ github.EVENT_NAME }}'
-          if( $event = 'workflow_dispatch')
-          {
-          echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
-          }
-          else
-          {
-          $env = '{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}'
-          echo "::set-output name=matrix::'$env'"
-          }
-      shell: pwsh
-      
+    - id: set-matrix
+      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.job1.outputs.matrix)}}
     steps:
-    - run: write-host ${{ matrix.environment }}
+    - run: write-host ${{ matrix.project }}
       shell: pwsh
