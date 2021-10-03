@@ -17,12 +17,16 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - if: ${{ github.ref == 'master' }}
-      id: set-matrix
-      run: |
-          
-          #echo "Env: ${{ github.event.type }}" 
+    - name : set-matrix-from-workflow-dispatch
+      if: ${{ github.EVENT_NAME == 'workflow_dispatch' }}
+      id: set-matrix-from-workflow-dispatch
+      run: |        
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
+    - name : set-matrix      
+    - if: ${{ github.EVENT_NAME != 'workflow_dispatch' }}
+      id: set-matrix
+      run: |        
+          echo "::set-output name=matrix::'{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}'"
          
     - run: echo " ${{GITHUB.EVENT_NAME}}"
   job2:
