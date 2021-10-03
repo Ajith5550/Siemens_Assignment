@@ -16,7 +16,6 @@ jobs:
           if [ ${{github.event_name}} = "push" ] 
           then
             echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
-          fi
           else
             echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           fi
