@@ -1,8 +1,16 @@
-
 on: 
-  push:
-    branches:
-      - master
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'information'
+      environment:
+        description: 'environments to be deployed'
+        required: true
+        default: "{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
+
 name: build
 jobs:
   job1:
@@ -13,9 +21,9 @@ jobs:
     - id: set-matrix
       run: |
           
-          if [ ${{github.event_name}} = "push" ] 
+          if [ ${{github.event_name}} = "workflow_dispatch" ] 
           then
-            echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+            echo "::set-output name=matrix::${{github.event.inputs.environment}}"
           else
             echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           fi
