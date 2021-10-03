@@ -24,7 +24,7 @@ jobs:
           #echo "Env: ${{ github.event.type }}" 
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
          
-    - run: echo " ${{github.run_id}}"
+    - run: echo " ${{GITHUB_WORKFLOW}}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
