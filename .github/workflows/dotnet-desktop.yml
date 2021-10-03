@@ -18,15 +18,10 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-          $event = ${{ github.event.type }}
-          echo $event
-          $environments = ${{ github.event.inputs.envs }}
-          if ( $environments  != '')
-          {
+          
+          echo "Env: ${{ github.event.type }}" 
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
-          }
-          else
-          {
+         
           echo "::set-output name=matrix::{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
           }
       shell: pwsh
