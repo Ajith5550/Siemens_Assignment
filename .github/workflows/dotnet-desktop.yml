@@ -24,14 +24,15 @@ jobs:
           $event = '${{ github.EVENT_NAME }}'
           if( $event = 'workflow_dispatch')
           {
-          echo "${{ github.EVENT_NAME }}"
+          echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
           }
-         # echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
-         
+          else
+          {
+          $env = '{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}'
+          echo "::set-output name=matrix::$env"
+          }
       shell: pwsh
- 
-         
-    - run: echo " ${{GITHUB.EVENT_NAME}}"
+      
   job2:
     needs: job1
     runs-on: ubuntu-latest
