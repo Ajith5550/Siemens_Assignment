@@ -1,4 +1,5 @@
 
+
 on: 
   push:
     branches:
@@ -23,7 +24,7 @@ jobs:
           #echo "Env: ${{ github.event.type }}" 
           echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
          
-    - run: echo " ${{ github.ref }}"
+    - run: echo " ${{ github.event }}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
