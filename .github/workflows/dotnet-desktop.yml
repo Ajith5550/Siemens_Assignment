@@ -8,7 +8,7 @@ on:
       envs:
         description: 'env vars'     
         required: true
-        default: "{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+        default: "{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
 name: build
 jobs:
   job1:
@@ -25,5 +25,5 @@ jobs:
     strategy:
       matrix: ${{fromJson(needs.job1.outputs.matrix)}}
     steps:
-    - run: write-host ${{ matrix.project }}
+    - run: write-host ${{ matrix.environment }}
       shell: pwsh
