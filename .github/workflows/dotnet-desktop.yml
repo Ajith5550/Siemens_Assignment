@@ -15,6 +15,7 @@ jobs:
           then
             echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           fi
+          echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
       shell: bash
   job2:
     needs: job1
