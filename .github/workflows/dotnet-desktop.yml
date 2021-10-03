@@ -12,7 +12,7 @@ jobs:
     - id: set-matrix
       run: |
           $enn = ${{ github.event_name }}
-          if[ $enn -eq 'push' ]
+          if[ $enn = 'push' ]
           then
             echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           fi
