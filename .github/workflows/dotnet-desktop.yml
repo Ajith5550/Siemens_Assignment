@@ -21,7 +21,7 @@ jobs:
       if: ${{ github.EVENT_NAME == 'workflow_dispatch' }}
       id: set-matrix
       run: |
-          $event = ${{ github.EVENT_NAME }}
+          $event = '${{ github.EVENT_NAME }}'
           if( $event = 'workflow_dispatch')
           {
           echo "${{ github.EVENT_NAME }}"
