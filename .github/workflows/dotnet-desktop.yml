@@ -26,6 +26,8 @@ jobs:
           echo "${{ github.EVENT_NAME }}"
           }
          # echo "::set-output name=matrix::${{ github.event.inputs.envs }}"
+         
+      shell: pwsh
  
          
     - run: echo " ${{GITHUB.EVENT_NAME}}"
