@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           echo "$matrix"
           echo "$en"
-      shell: bash
+
   job2:
     needs: job1
     runs-on: ubuntu-latest
