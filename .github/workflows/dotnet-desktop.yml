@@ -29,7 +29,7 @@ jobs:
           else
           {
           $env = '{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}'
-          echo "::set-output name=matrix::$env"
+          echo "::set-output name=matrix::'$env'"
           }
       shell: pwsh
       
