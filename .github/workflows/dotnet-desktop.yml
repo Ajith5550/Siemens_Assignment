@@ -16,8 +16,12 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
     - id: set-matrix
-      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
-      shell: pwsh
+      run: |
+          if(github.event_name = 'push')
+          {
+          echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+          }
+      shell: bash
   job2:
     needs: job1
     runs-on: ubuntu-latest
