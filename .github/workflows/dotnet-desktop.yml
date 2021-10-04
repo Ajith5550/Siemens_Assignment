@@ -20,7 +20,7 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-          $data = "test"
+          $ data = "test"
           
           if [ ${{github.event_name}} = "workflow_dispatch" ] 
           then
