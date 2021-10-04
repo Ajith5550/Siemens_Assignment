@@ -11,9 +11,9 @@ jobs:
     - id: set-matrix2
       run: |
             echo "::set-output name=matrix::${{github.event_name}}"
-            echo "::set-env name=flag::true"
+
          
     - id: set-matrix
       run: |
-          $flag
+          $matrix
          
