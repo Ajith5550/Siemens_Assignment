@@ -20,12 +20,13 @@ jobs:
     steps:
     - id: set-matrix
       run: |
+          $data ="{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           
           if [ ${{github.event_name}} = "workflow_dispatch" ] 
           then
             echo "::set-output name=matrix::${{github.event.inputs.environment}}"
           else
-            echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+            echo "::set-output name=matrix::$data"
           fi
           
          
