@@ -20,7 +20,7 @@ jobs:
     steps:
     - id: set-matrix
       run: |
-          $ data ="{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
+          $data = "{\"include\":[{\"project\":\"foo\"},{\"project\":\"bar\"}]}"
           
           if [ ${{github.event_name}} = "workflow_dispatch" ] 
           then
