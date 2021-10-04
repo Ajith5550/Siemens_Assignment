@@ -1,41 +1,19 @@
 on: 
-
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'information'
-      environment:
-        description: 'environments to be deployed'
-        required: true
-        default: "{\"include\":[{\"environment\":\"dev1\"},{\"environment\":\"dev2\"}]}"
+  push:
+    branches:
+      - master
 
 name: build
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+    - id: set-matrix2
+      run: |
+            echo "::set-output name=matrix::${{github.event_name}}"
+            echo "::set-env name=flag::true"
+         
     - id: set-matrix
       run: |
-          $ data = "test"
-          
-          if [ ${{github.event_name}} = "workflow_dispatch" ] 
-          then
-            echo "::set-output name=matrix::${{github.event.inputs.environment}}"
-          else
-            echo "::set-output name=matrix::$data"
-          fi
-          
+          $flag
          
-
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
-    steps:
-    - run: write-host ${{ matrix.project }}
-      shell: pwsh
