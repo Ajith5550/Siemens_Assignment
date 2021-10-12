@@ -17,6 +17,6 @@ jobs:
       run: |
           $env = 'test'
           
-          echo '$env'
+          echo $env
           echo '${{ secrets.devname }}'
       shell: pwsh
