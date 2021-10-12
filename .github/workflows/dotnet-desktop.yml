@@ -16,7 +16,6 @@ jobs:
     - id: set-matrix
       run: |
           $env = 'devname'
-          
           echo $env
           echo '${{ secrets.$env }}'
       shell: pwsh
