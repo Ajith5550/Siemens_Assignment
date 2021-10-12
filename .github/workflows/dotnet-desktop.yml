@@ -15,5 +15,8 @@ jobs:
          
     - id: set-matrix
       run: |
+          $env = 'test
+          
+          echo '$env'
           echo '${{ secrets.devname }}'
          
