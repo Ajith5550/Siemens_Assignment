@@ -19,4 +19,4 @@ jobs:
           
           echo '$env'
           echo '${{ secrets.devname }}'
-         
+      shell: pwsh
