@@ -22,7 +22,7 @@ jobs:
     - id: set-matrix-bash
       run: |
           echo $env
-          echo $env.name
+          echo $name
           
       env:
           name: ajith
