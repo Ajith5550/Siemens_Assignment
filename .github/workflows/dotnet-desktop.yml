@@ -19,3 +19,12 @@ jobs:
           echo $env
           echo '${{ $env }}'
       shell: pwsh
+
+    - id: set-matrix-bash
+      run: |
+          echo $env
+          echo $env.name
+          
+      env:
+          name: ajith
+      shell: bash
