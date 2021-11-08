@@ -15,7 +15,7 @@ jobs:
 
           # ClientId of the Azure Service principal created.
           client-id: dc82d782-018d-4cdd-b592-cabbfc547dd0
-          client-secret: XHp7Q~TFdyhhKzGM5D4FenmnIC.nFa5ByEMry
+
           # TenantId of the Azure Service principal created.
           tenant-id: 2460b944-ba5e-4450-9cfb-38efd5ec2ed8
           # Azure subscriptionId
