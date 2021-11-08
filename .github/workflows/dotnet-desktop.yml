@@ -8,22 +8,16 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-    - id: set-matrix2
-      run: |
-            echo "::set-output name=matrix::${{github.event_name}}"
+      - name: Azure Login
+        uses: Azure/login@v1.4.0
+        with:
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
 
-         
-    - id: set-matrix
-      run: |
-          $env = 'secrets.devname'
-          echo $env
-      shell: pwsh
-
-    - id: set-matrix-bash
-      run: |
-          echo $env
-          echo $name
-          
-      env:
-          name: ajith
-      shell: bash
+          # ClientId of the Azure Service principal created.
+          client-id: dc82d782-018d-4cdd-b592-cabbfc547dd0
+          client-secret: XHp7Q~TFdyhhKzGM5D4FenmnIC.nFa5ByEMry
+          # TenantId of the Azure Service principal created.
+          tenant-id: 2460b944-ba5e-4450-9cfb-38efd5ec2ed8
+          # Azure subscriptionId
+          subscription-id: 2baaaec4-bb2b-4238-ba1c-95d54ac2d312
+          # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
