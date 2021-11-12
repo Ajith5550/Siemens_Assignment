@@ -15,5 +15,5 @@ jobs:
           echo "::set-output  name=${{ secrets[env.pwd] }}"
       name: op
       shell: pwsh
-    - run: echo '${{steps.output.op.name}}'
+    - run: echo '${{steps.op.outputs.name}}'
       shell: pwsh
