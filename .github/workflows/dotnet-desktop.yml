@@ -11,4 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets[env.AWS_ACCESS_KEY_ID] }}"
-    - run: echo $AWS_ACCESS_KEY_ID
+      shell: pwsh
+    - run: echo '$AWS_ACCESS_KEY_ID'
+      shell: pwsh
