@@ -3,11 +3,12 @@ on:
     branches:
       - master
 
-name: build
 jobs:
-  job1:
+  build:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: pwd
     steps:
-      - name: Azure Login
-        run: 'echo ${{ secrets[pwd] }}'
-        shell: pwsh
+    - uses: actions/checkout@v2
+    - run: echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets[env.AWS_ACCESS_KEY_ID] }}"
+    - run: echo $AWS_ACCESS_KEY_ID
