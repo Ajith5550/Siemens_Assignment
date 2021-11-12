@@ -10,7 +10,9 @@ jobs:
       AWS_ACCESS_KEY_ID: pwd
     steps:
     - uses: actions/checkout@v2
-    - run: echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets[env.AWS_ACCESS_KEY_ID] }}"
+    - run: | 
+          echo "::set-env name=AWS_ACCESS_KEY_ID::${{ secrets[env.AWS_ACCESS_KEY_ID] }}"
+          echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true"
       shell: pwsh
     - run: echo '$AWS_ACCESS_KEY_ID'
       shell: pwsh
