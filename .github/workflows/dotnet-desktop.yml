@@ -6,11 +6,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      pwd: pwd  
     steps:
     - uses: actions/checkout@v2
     - run: | 
           echo "$name = pwd"
-          echo "::set-output  name=${{ secrets[$name] }}"
+          echo "::set-output  name=${{ secrets[env.pwd] }}"
       name: op
       shell: pwsh
     - run: echo '${{steps.output.op.name}}'
