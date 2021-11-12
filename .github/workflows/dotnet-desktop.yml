@@ -11,9 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: | 
-          echo "$name = pwd"
-          echo "::set-output  name=${{ secrets[env.pwd] }}"
+          echo '${{ secrets[env.pwd] }}'
       name: op
-      shell: pwsh
-    - run: echo '${{steps.op.outputs.name}}'
       shell: pwsh
